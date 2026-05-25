@@ -213,13 +213,67 @@
             return;
         }
 
+        const navList = navigation.querySelector(".nav-list");
+        const toggleButton = createMobileNavToggle(navigation);
+
         const applyLayoutState = () => {
-            const isMobile = window.innerWidth <= BREAKPOINTS.mobile;
+            const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+            const isMobileWidth = window.innerWidth <= BREAKPOINTS.mobile;
+            const isMobile = isMobileWidth || isPortrait;
+
             navigation.classList.toggle("mobile", isMobile);
+            if (!isMobile) {
+                navigation.classList.remove("menu-open");
+                toggleButton.setAttribute("aria-expanded", "false");
+            }
         };
+
+        toggleButton.addEventListener("click", () => {
+            const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+            const nextState = !isExpanded;
+            navigation.classList.toggle("menu-open", nextState);
+            toggleButton.setAttribute("aria-expanded", String(nextState));
+            toggleButton.setAttribute("aria-label", nextState ? "Chiudi menu" : "Apri menu");
+            const label = toggleButton.querySelector(".mobile-nav-toggle__label");
+            if (label) {
+                label.textContent = nextState ? "chiudi" : "menu";
+            }
+        });
+
+        if (navList) {
+            navList.querySelectorAll(".nav-link").forEach((link) => {
+                link.addEventListener("click", () => {
+                    if (navigation.classList.contains("mobile")) {
+                        navigation.classList.remove("menu-open");
+                        toggleButton.setAttribute("aria-expanded", "false");
+                    }
+                });
+            });
+        }
 
         applyLayoutState();
         window.addEventListener("resize", applyLayoutState);
+    }
+
+    function createMobileNavToggle(navigation) {
+        let button = navigation.querySelector(".mobile-nav-toggle");
+        if (button) {
+            return button;
+        }
+
+        button = document.createElement("button");
+        button.type = "button";
+        button.className = "mobile-nav-toggle";
+        button.setAttribute("aria-expanded", "false");
+        button.setAttribute("aria-label", "Apri menu");
+
+        const label = document.createElement("span");
+        label.className = "mobile-nav-toggle__label";
+        label.textContent = "menu";
+        button.appendChild(label);
+
+        navigation.insertBefore(button, navigation.firstChild);
+        return button;
     }
 
     function initializeSmoothScroll() {

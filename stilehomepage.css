@@ -211,9 +211,77 @@ body {
     filter: drop-shadow(0 3px 8px rgba(255, 105, 180, 0.7));
 }
 
-.navigation.mobile .nav-list {
+.mobile-nav-toggle {
+    display: none;
+}
+
+.navigation.mobile {
+    display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+}
+
+.navigation.mobile .mobile-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 140px;
+    height: 46px;
+    margin-bottom: 14px;
+    padding: 0 18px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background var(--transition-main), transform var(--transition-main), box-shadow var(--transition-main);
+}
+
+.navigation.mobile .mobile-nav-toggle:hover,
+.navigation.mobile .mobile-nav-toggle:focus-visible {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.mobile-nav-toggle__label {
+    display: inline-block;
+}
+
+.navigation.mobile .nav-list {
+    display: none;
+    width: min(100%, 360px);
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.navigation.mobile.menu-open .nav-list {
+    display: flex;
+}
+
+.navigation.mobile .nav-item {
+    width: 100%;
+}
+
+.navigation.mobile .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+}
+
+.navigation.mobile .nav-item {
+    width: 100%;
+}
+
+.navigation.mobile .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 12px 20px;
 }
 
 .main-content {
@@ -268,36 +336,39 @@ body {
 .hero-content {
     display: flex;
     gap: 20px;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-width: 100%;
+    text-align: center;
 }
 
 .hero-title-with-logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
+    width: 100%;
 }
 
 .delirium-logo {
-    height: 200px;
-    width: auto;
+    width: min(260px, 100%);
+    height: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.7));
 }
 
-
-
 .title-primary {
     margin-bottom: 10px;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    background: linear-gradient(135deg, var(--pink), var(--pink-strong), var(--magenta));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+    font-size: clamp(2.3rem, 5vw, 3.6rem);
+    max-width: 900px;
+    line-height: 1.05;
+    color: var(--text-main);
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.65),
+        0 0 30px rgba(255, 105, 180, 0.45);
 }
 
 .title-secondary {
@@ -371,13 +442,30 @@ body {
     flex-direction: column;
 }
 
-/* Migliora il layout delle scritte in aboutus: centra il blocco contenuti
-   e allinea il testo a sinistra per migliore leggibilità su schermi ampi */
-.content-box .about-content {
-    max-width: 760px;
-    margin: 0 auto;
-    align-items: flex-start;
-}
+    .text-block {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .band-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0 auto;
+        max-width: 620px;
+        color: var(--text-main);
+        line-height: 1.9;
+        font-size: 1rem;
+    }
+
+    .band-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 105, 180, 0.12);
+    }
+
+    .band-list li:last-child {
+        border-bottom: none;
+    }
 
 .content-box .description,
 .content-box .about-details .description {
@@ -704,9 +792,13 @@ body {
     .main-content {
         gap: 64px;
     }
+
+    .hero-content {
+        gap: 28px;
+    }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (orientation: portrait) {
     .page-container {
         padding: 0 15px;
     }
@@ -733,8 +825,27 @@ body {
         padding: 40px 0;
     }
 
+    .hero-content {
+        gap: 24px;
+    }
+
+    .hero-title-with-logo {
+        gap: 18px;
+    }
+
     .logo {
         height: 220px;
+    }
+
+    .delirium-logo {
+        width: min(220px, 100%);
+    }
+
+    .title-primary,
+    .title-secondary,
+    .title-tertiary,
+    .subtitle {
+        text-align: center;
     }
 
     .content-box {
@@ -750,6 +861,48 @@ body {
     .bands-grid {
         gap: 15px;
         grid-template-columns: 1fr;
+    }
+
+    .band-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .band-action {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation {
+        padding: 12px 15px;
+    }
+
+    .nav-link {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .logo {
+        height: 180px;
+    }
+
+    .delirium-logo {
+        width: min(180px, 100%);
+    }
+
+    .content-box {
+        padding: 25px;
+    }
+
+    .footer-content {
+        padding: 25px;
+    }
+
+    .metal-quote blockquote {
+        font-size: 1.08rem;
+        padding: 24px;
     }
 }
 
