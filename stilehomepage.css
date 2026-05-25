@@ -268,8 +268,27 @@ body {
 .hero-content {
     display: flex;
     gap: 20px;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
+
+.hero-title-with-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.delirium-logo {
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.7));
+}
+
+
 
 .title-primary {
     margin-bottom: 10px;
@@ -539,6 +558,67 @@ body {
 .footer-link:focus-visible {
     outline: 2px solid var(--pink);
     outline-offset: 3px;
+}
+
+.band-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.band-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    border-radius: 999px;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--pink), var(--pink-strong));
+    box-shadow: 0 16px 30px rgba(111, 45, 179, 0.25);
+    transition: transform var(--transition-main), box-shadow var(--transition-main), background var(--transition-main);
+}
+
+.band-action.youtube {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+}
+
+.band-action.instagram {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+}
+.band-action.tiktok {
+    background: linear-gradient(135deg, #000000, #010101 40%, #69C9D0 100%);
+}
+
+.band-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 36px rgba(111, 45, 179, 0.24);
+}
+
+.band-action:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 4px;
+}
+
+.video-player {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding-top: 56.25%;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 22px 42px rgba(0, 0, 0, 0.35);
+}
+.video-player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 .fade-in {
