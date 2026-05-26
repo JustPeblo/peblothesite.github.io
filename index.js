@@ -3,24 +3,22 @@
 
     const SELECTORS = {
         fadeElements: ".fade-in",
-        navLinks: ".nav-link",
-        heroSection: ".hero-section",
-        logoWrapper: ".logo-wrapper",
-        glowTitles: ".title-secondary",
-        navigation: ".navigation",
         internalAnchors: 'a[href^="#"]',
+        navigation: ".navigation",
+        navLinks: ".nav-link",
+        mobileNavLabel: ".mobile-nav-toggle__label",
     };
 
-    const BREAKPOINTS = {
-        mobile: 768,
+    const LAYOUT = {
+        mobileBreakpoint: 768,
     };
 
     const PARTICLES = {
-        count: 50,
+        fillRgb: "255, 105, 180",
         speed: 0.35,
         minSize: 1,
         maxSize: 3,
-        getCount: (width) => {
+        getResponsiveCount: (width) => {
             if (width >= 1600) return 160;
             if (width >= 1200) return 120;
             if (width >= 900) return 90;
@@ -36,7 +34,6 @@
 
         initializeRevealAnimations();
         initializeNavigationEffects();
-        initializeScrollEffects();
         initializeParticleBackground();
         initializeResponsiveNavigation();
         initializeSmoothScroll();
@@ -70,9 +67,9 @@
                 });
             },
             {
-                    threshold: 0,
-                    rootMargin: "0px 0px 20% 0px",
-                }
+                threshold: 0,
+                rootMargin: "0px 0px 20% 0px",
+            }
         );
 
         elements.forEach((element) => observer.observe(element));
@@ -129,10 +126,6 @@
         );
     }
 
-    function initializeScrollEffects() {
-        // Scroll-based text motion disabled by design.
-    }
-
     function initializeParticleBackground() {
         if (prefersReducedMotion()) {
             return;
@@ -158,7 +151,7 @@
             canvas.width = width;
             canvas.height = height;
 
-            const desiredCount = typeof PARTICLES.getCount === 'function' ? PARTICLES.getCount(width) : PARTICLES.count;
+            const desiredCount = PARTICLES.getResponsiveCount(width);
             particles = createParticles(desiredCount, width, height);
         };
 
@@ -179,7 +172,7 @@
 
                 context.beginPath();
                 context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                context.fillStyle = `rgba(255, 105, 180, ${particle.opacity})`;
+                context.fillStyle = `rgba(${PARTICLES.fillRgb}, ${particle.opacity})`;
                 context.fill();
             });
 
@@ -218,23 +211,24 @@
 
         const applyLayoutState = () => {
             const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-            const isMobileWidth = window.innerWidth <= BREAKPOINTS.mobile;
+            const isMobileWidth = window.innerWidth <= LAYOUT.mobileBreakpoint;
             const isMobile = isMobileWidth || isPortrait;
 
             navigation.classList.toggle("mobile", isMobile);
             if (!isMobile) {
-                navigation.classList.remove("menu-open");
-                toggleButton.setAttribute("aria-expanded", "false");
+                closeMobileNavigation(navigation, toggleButton);
             }
         };
 
         toggleButton.addEventListener("click", () => {
             const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
             const nextState = !isExpanded;
+
             navigation.classList.toggle("menu-open", nextState);
             toggleButton.setAttribute("aria-expanded", String(nextState));
             toggleButton.setAttribute("aria-label", nextState ? "Chiudi menu" : "Apri menu");
-            const label = toggleButton.querySelector(".mobile-nav-toggle__label");
+
+            const label = toggleButton.querySelector(SELECTORS.mobileNavLabel);
             if (label) {
                 label.textContent = nextState ? "chiudi" : "menu";
             }
@@ -244,8 +238,7 @@
             navList.querySelectorAll(".nav-link").forEach((link) => {
                 link.addEventListener("click", () => {
                     if (navigation.classList.contains("mobile")) {
-                        navigation.classList.remove("menu-open");
-                        toggleButton.setAttribute("aria-expanded", "false");
+                        closeMobileNavigation(navigation, toggleButton);
                     }
                 });
             });
@@ -274,6 +267,17 @@
 
         navigation.insertBefore(button, navigation.firstChild);
         return button;
+    }
+
+    function closeMobileNavigation(navigation, toggleButton) {
+        navigation.classList.remove("menu-open");
+        toggleButton.setAttribute("aria-expanded", "false");
+        toggleButton.setAttribute("aria-label", "Apri menu");
+
+        const label = toggleButton.querySelector(SELECTORS.mobileNavLabel);
+        if (label) {
+            label.textContent = "menu";
+        }
     }
 
     function initializeSmoothScroll() {

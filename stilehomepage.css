@@ -1,21 +1,21 @@
 :root {
-    --bg-dark: #0e0626;
-    --bg-deep: #09031a;
-    --panel-strong: #2b1b44;
-    --panel-soft: #3a2757;
-    --text-main: #F7F7FB;
-    --text-muted: #CDB8F5;
-    --pink: #6F2DB3;
-    --pink-strong: #4B0076;
-    --magenta: #C27BFF;
-    --orange: #FFB86B;
-    --spotify-green: #1db954;
-    --spotify-green-light: #1ed760;
-    --radius-lg: 24px;
-    --radius-md: 14px;
+    --color-page-bg: #0e0626;
+    --color-panel-start: #2b1b44;
+    --color-panel-end: #3a2757;
+    --color-text-primary: #F7F7FB;
+    --color-text-muted: #CDB8F5;
+    --color-brand: #6F2DB3;
+    --color-brand-dark: #4B0076;
+    --color-brand-light: #C27BFF;
+    --color-accent-warm: #FFB86B;
+    --color-spotify: #1db954;
+    --color-spotify-light: #1ed760;
+    --radius-panel: 24px;
+    --radius-card: 14px;
     --shadow-soft: 0 12px 36px rgba(0, 0, 0, 0.3);
     --shadow-glow: 0 0 22px rgba(111, 45, 179, 0.28);
-    --transition-main: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --color-glow-pink: rgba(255, 105, 180, 0.38);
+    --transition-standard: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -33,10 +33,10 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
-    color: var(--text-main);
+    color: var(--color-text-primary);
     line-height: 1.6;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background: var(--bg-dark);
+    background: var(--color-page-bg);
 }
 
 .particle-canvas {
@@ -69,8 +69,8 @@ body {
     overflow: hidden;
     padding: 20px 40px;
     border-radius: 20px;
-    border: 2px solid rgba(255, 105, 180, 0.38);
-    background: linear-gradient(135deg, var(--panel-strong), var(--panel-soft));
+    border: 2px solid var(--color-glow-pink);
+    background: linear-gradient(135deg, var(--color-panel-start), var(--color-panel-end));
     box-shadow:
         var(--shadow-soft),
         var(--shadow-glow),
@@ -87,13 +87,13 @@ body {
     border-radius: 22px;
     background: linear-gradient(
         45deg,
-        var(--pink),
-        var(--pink-strong),
-        var(--magenta),
+        var(--color-brand),
+        var(--color-brand-dark),
+        var(--color-brand-light),
         #9400d3,
-        var(--pink),
-        var(--pink-strong),
-        var(--magenta),
+        var(--color-brand),
+        var(--color-brand-dark),
+        var(--color-brand-light),
         #9400d3
     );
     background-size: 400% 400%;
@@ -106,7 +106,7 @@ body {
     inset: 0;
     z-index: -1;
     border-radius: 20px;
-    background: linear-gradient(135deg, var(--panel-strong), var(--panel-soft));
+    background: linear-gradient(135deg, var(--color-panel-start), var(--color-panel-end));
 }
 
 .nav-list {
@@ -132,10 +132,10 @@ body {
     font-weight: 700;
     text-decoration: none;
     transition:
-        transform var(--transition-main),
-        box-shadow var(--transition-main),
-        background-color var(--transition-main),
-        text-shadow var(--transition-main);
+        transform var(--transition-standard),
+        box-shadow var(--transition-standard),
+        background-color var(--transition-standard),
+        text-shadow var(--transition-standard);
 }
 
 .nav-link::before {
@@ -158,16 +158,16 @@ body {
     transform: translateY(-3px);
     background: rgba(255, 105, 180, 0.25);
     text-shadow:
-        0 0 10px var(--pink),
-        0 0 20px var(--pink),
-        0 0 30px var(--pink);
+        0 0 10px var(--color-brand),
+        0 0 20px var(--color-brand),
+        0 0 30px var(--color-brand);
     box-shadow:
         0 8px 25px rgba(255, 105, 180, 0.5),
         0 0 20px rgba(255, 105, 180, 0.3);
 }
 
 .nav-link:focus-visible {
-    outline: 2px solid var(--pink);
+    outline: 2px solid var(--color-brand);
     outline-offset: 3px;
 }
 
@@ -187,10 +187,10 @@ body {
 
 .nav-item.active .nav-link {
     color: #fff;
-    background: linear-gradient(135deg, var(--pink), var(--pink-strong));
+    background: linear-gradient(135deg, var(--color-brand), var(--color-brand-dark));
     text-shadow:
         0 0 15px rgba(255, 255, 255, 0.8),
-        0 0 25px var(--pink);
+        0 0 25px var(--color-brand);
     box-shadow:
         0 5px 20px rgba(255, 105, 180, 0.6),
         0 0 30px rgba(255, 105, 180, 0.4);
@@ -207,7 +207,7 @@ body {
     transform: translateX(-50%);
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-top: 12px solid var(--pink);
+    border-top: 12px solid var(--color-brand);
     filter: drop-shadow(0 3px 8px rgba(255, 105, 180, 0.7));
 }
 
@@ -239,7 +239,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    transition: background var(--transition-main), transform var(--transition-main), box-shadow var(--transition-main);
+    transition: background var(--transition-standard), transform var(--transition-standard), box-shadow var(--transition-standard);
 }
 
 .navigation.mobile .mobile-nav-toggle:hover,
@@ -262,16 +262,6 @@ body {
 
 .navigation.mobile.menu-open .nav-list {
     display: flex;
-}
-
-.navigation.mobile .nav-item {
-    width: 100%;
-}
-
-.navigation.mobile .nav-link {
-    width: 100%;
-    text-align: center;
-    padding: 12px 20px;
 }
 
 .navigation.mobile .nav-item {
@@ -317,10 +307,10 @@ body {
     object-fit: contain;
     animation: float 6s ease-in-out infinite;
     transition:
-        transform 0.55s var(--transition-main),
-        filter 0.55s var(--transition-main);
+        transform 0.55s var(--transition-standard),
+        filter 0.55s var(--transition-standard);
     filter:
-        drop-shadow(0 0 30px var(--magenta))
+        drop-shadow(0 0 30px var(--color-brand-light))
         drop-shadow(0 0 60px #930093)
         drop-shadow(0 0 90px rgba(255, 0, 255, 0.3));
 }
@@ -328,7 +318,7 @@ body {
 .logo:hover {
     transform: scale(1.08) rotateY(10deg);
     filter:
-        drop-shadow(0 0 40px var(--magenta))
+        drop-shadow(0 0 40px var(--color-brand-light))
         drop-shadow(0 0 80px #930093)
         drop-shadow(0 0 120px rgba(255, 0, 255, 0.5));
 }
@@ -365,7 +355,7 @@ body {
     font-size: clamp(2.3rem, 5vw, 3.6rem);
     max-width: 900px;
     line-height: 1.05;
-    color: var(--text-main);
+    color: var(--color-text-primary);
     text-shadow:
         0 0 8px rgba(255, 255, 255, 0.65),
         0 0 30px rgba(255, 105, 180, 0.45);
@@ -373,16 +363,16 @@ body {
 
 .title-secondary {
     margin-bottom: 8px;
-    color: var(--text-main);
+    color: var(--color-text-primary);
     font-size: clamp(1.4rem, 4vw, 2.2rem);
     text-shadow:
-        0 0 10px var(--magenta),
-        0 0 20px var(--magenta),
-        0 0 30px var(--magenta);
+        0 0 10px var(--color-brand-light),
+        0 0 20px var(--color-brand-light),
+        0 0 30px var(--color-brand-light);
 }
 
 .title-tertiary {
-    color: var(--text-muted);
+    color: var(--color-text-muted);
     font-style: italic;
     font-size: clamp(1.1rem, 3vw, 1.6rem);
     text-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
@@ -390,16 +380,16 @@ body {
 
 .subtitle {
     margin-bottom: 20px;
-    color: var(--pink);
+    color: var(--color-brand);
     font-size: clamp(1.3rem, 3vw, 1.8rem);
     text-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
 }
 
 .metal-subtitle {
-    color: var(--orange);
+    color: var(--color-accent-warm);
     text-shadow:
-        0 0 10px var(--orange),
-        0 0 20px var(--orange);
+        0 0 10px var(--color-accent-warm),
+        0 0 20px var(--color-accent-warm);
 }
 
 .content-section {
@@ -414,7 +404,7 @@ body {
     padding: 50px;
     position: relative;
     overflow: hidden;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-panel);
     border: 2px solid rgba(255, 105, 180, 0.3);
     background: linear-gradient(135deg, rgba(51, 51, 51, 0.42), rgba(68, 68, 68, 0.18));
     box-shadow:
@@ -425,7 +415,7 @@ body {
 
 .description {
     margin-bottom: 30px;
-    color: var(--text-main);
+    color: var(--color-text-primary);
     text-align: center;
     line-height: 1.8;
     font-size: clamp(1.1rem, 2.5vw, 1.3rem);
@@ -442,30 +432,30 @@ body {
     flex-direction: column;
 }
 
-    .text-block {
-        max-width: 760px;
-        margin: 0 auto;
-        text-align: center;
-    }
+.text-block {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+}
 
-    .band-list {
-        list-style: none;
-        padding-left: 0;
-        margin: 0 auto;
-        max-width: 620px;
-        color: var(--text-main);
-        line-height: 1.9;
-        font-size: 1rem;
-    }
+.band-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 auto;
+    max-width: 620px;
+    color: var(--color-text-primary);
+    line-height: 1.9;
+    font-size: 1rem;
+}
 
-    .band-list li {
-        padding: 8px 0;
-        border-bottom: 1px solid rgba(255, 105, 180, 0.12);
-    }
+.band-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 105, 180, 0.12);
+}
 
-    .band-list li:last-child {
-        border-bottom: none;
-    }
+.band-list li:last-child {
+    border-bottom: none;
+}
 
 .content-box .description,
 .content-box .about-details .description {
@@ -474,9 +464,67 @@ body {
 
 .about-details {
     padding: 30px;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-card);
     border: 1px solid rgba(255, 105, 180, 0.3);
     background: rgba(255, 105, 180, 0.1);
+}
+
+.exam-page {
+    gap: 52px;
+}
+
+.exam-kicker {
+    color: var(--color-accent-warm);
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-shadow: 0 0 16px rgba(255, 184, 107, 0.55);
+}
+
+.exam-intro {
+    max-width: 780px;
+    margin: 0 auto 40px;
+}
+
+.exam-timeline {
+    display: grid;
+    gap: 22px;
+}
+
+.exam-year {
+    display: grid;
+    grid-template-columns: 74px 1fr;
+    gap: 22px;
+    align-items: start;
+    padding: 24px;
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(194, 123, 255, 0.22);
+    background: linear-gradient(135deg, rgba(111, 45, 179, 0.18), rgba(255, 184, 107, 0.08));
+}
+
+.exam-year__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-brand), var(--color-brand-dark));
+    box-shadow: 0 12px 28px rgba(111, 45, 179, 0.35);
+}
+
+.exam-year__content .description {
+    margin-bottom: 0;
+}
+
+.exam-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .metal-content {
@@ -497,7 +545,7 @@ body {
 }
 
 .band-item {
-    color: var(--text-muted);
+    color: var(--color-text-muted);
     display: block;
     padding: 15px;
     font-weight: 700;
@@ -507,10 +555,10 @@ body {
     border: 1px solid rgba(111,45,179,0.14);
     background: linear-gradient(135deg, rgba(111,45,179,0.12), rgba(194,123,255,0.08));
     transition:
-        transform var(--transition-main),
-        box-shadow var(--transition-main),
-        background var(--transition-main),
-        color var(--transition-main);
+        transform var(--transition-standard),
+        box-shadow var(--transition-standard),
+        background var(--transition-standard),
+        color var(--transition-standard);
 }
 
 .band-item:hover {
@@ -520,7 +568,7 @@ body {
 }
 
 .band-item:focus-visible {
-    outline: 2px solid var(--pink);
+    outline: 2px solid var(--color-brand);
     outline-offset: 3px;
 }
 
@@ -533,13 +581,13 @@ body {
     font-weight: 600;
     text-decoration: none;
     padding: 12px 20px;
-    background: linear-gradient(135deg, var(--spotify-green), var(--spotify-green-light));
+    background: linear-gradient(135deg, var(--color-spotify), var(--color-spotify-light));
     box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
     transition:
-        transform var(--transition-main),
-        box-shadow var(--transition-main),
-        background var(--transition-main),
-        padding-left var(--transition-main);
+        transform var(--transition-standard),
+        box-shadow var(--transition-standard),
+        background var(--transition-standard),
+        padding-left var(--transition-standard);
 }
 
 .spotify-link::before {
@@ -549,13 +597,13 @@ body {
     top: 50%;
     font-size: 16px;
     transform: translateY(-50%);
-    transition: left var(--transition-main);
+    transition: left var(--transition-standard);
 }
 
 .spotify-link:hover {
     padding-left: 35px;
     transform: translateY(-3px);
-    background: linear-gradient(135deg, var(--spotify-green-light), var(--spotify-green));
+    background: linear-gradient(135deg, var(--color-spotify-light), var(--color-spotify));
     box-shadow: 0 8px 25px rgba(29, 185, 84, 0.5);
 }
 
@@ -575,11 +623,11 @@ body {
 
 .metal-quote blockquote {
     padding: 30px;
-    border-radius: var(--radius-md);
-    color: var(--text-muted);
+    border-radius: var(--radius-card);
+    color: var(--color-text-muted);
     font-size: 1.2rem;
     font-style: italic;
-    border-left: 5px solid var(--pink);
+    border-left: 5px solid var(--color-brand);
     background: rgba(255, 105, 180, 0.1);
 }
 
@@ -587,7 +635,7 @@ body {
     display: block;
     margin-top: 15px;
     font-size: 0.9rem;
-    color: var(--pink);
+    color: var(--color-brand);
 }
 
 .footer {
@@ -603,25 +651,25 @@ body {
     text-align: center;
     border-radius: 20px;
     border: 1px solid rgba(255, 105, 180, 0.3);
-    background: linear-gradient(135deg, var(--panel-strong), var(--panel-soft));
+    background: linear-gradient(135deg, var(--color-panel-start), var(--color-panel-end));
     box-shadow:
         0 15px 40px rgba(0, 0, 0, 0.3),
         0 0 20px rgba(255, 0, 255, 0.2);
 }
 
 .footer-text {
-    color: var(--text-main);
+    color: var(--color-text-primary);
     line-height: 1.8;
     font-size: 1rem;
 }
 
 .footer-link {
-    color: var(--pink);
+    color: var(--color-brand);
     position: relative;
     text-decoration: none;
     transition:
-        text-shadow var(--transition-main),
-        color var(--transition-main);
+        text-shadow var(--transition-standard),
+        color var(--transition-standard);
 }
 
 .footer-link::after {
@@ -631,8 +679,8 @@ body {
     bottom: -2px;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--pink), var(--pink-strong));
-    transition: width var(--transition-main);
+    background: linear-gradient(90deg, var(--color-brand), var(--color-brand-dark));
+    transition: width var(--transition-standard);
 }
 
 .footer-link:hover::after {
@@ -640,11 +688,11 @@ body {
 }
 
 .footer-link:hover {
-    text-shadow: 0 0 15px var(--pink);
+    text-shadow: 0 0 15px var(--color-brand);
 }
 
 .footer-link:focus-visible {
-    outline: 2px solid var(--pink);
+    outline: 2px solid var(--color-brand);
     outline-offset: 3px;
 }
 
@@ -665,9 +713,9 @@ body {
     color: #fff;
     font-weight: 700;
     text-decoration: none;
-    background: linear-gradient(135deg, var(--pink), var(--pink-strong));
+    background: linear-gradient(135deg, var(--color-brand), var(--color-brand-dark));
     box-shadow: 0 16px 30px rgba(111, 45, 179, 0.25);
-    transition: transform var(--transition-main), box-shadow var(--transition-main), background var(--transition-main);
+    transition: transform var(--transition-standard), box-shadow var(--transition-standard), background var(--transition-standard);
 }
 
 .band-action.youtube {
@@ -687,7 +735,7 @@ body {
 }
 
 .band-action:focus-visible {
-    outline: 2px solid var(--pink);
+    outline: 2px solid var(--color-brand);
     outline-offset: 4px;
 }
 
@@ -768,12 +816,6 @@ body {
 
     50% {
         transform: translateY(-20px);
-    }
-}
-
-@keyframes rotatePane {
-    to {
-        transform: rotate(360deg);
     }
 }
 
@@ -872,6 +914,22 @@ body {
         width: 100%;
         max-width: 100%;
     }
+
+    .exam-year {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 22px;
+    }
+
+    .exam-year__number {
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
+    }
+
+    .exam-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -890,34 +948,6 @@ body {
 
     .delirium-logo {
         width: min(180px, 100%);
-    }
-
-    .content-box {
-        padding: 25px;
-    }
-
-    .footer-content {
-        padding: 25px;
-    }
-
-    .metal-quote blockquote {
-        font-size: 1.08rem;
-        padding: 24px;
-    }
-}
-
-@media (max-width: 480px) {
-    .navigation {
-        padding: 12px 15px;
-    }
-
-    .nav-link {
-        font-size: 16px;
-        padding: 10px 20px;
-    }
-
-    .logo {
-        height: 180px;
     }
 
     .content-box {
