@@ -4,6 +4,7 @@
     const SELECTORS = {
         fadeElements: ".fade-in",
         internalAnchors: 'a[href^="#"]',
+        lightboxTriggers: ".exam-photo-button",
         navigation: ".navigation",
         navLinks: ".nav-link",
         mobileNavLabel: ".mobile-nav-toggle__label",
@@ -37,6 +38,7 @@
         initializeParticleBackground();
         initializeResponsiveNavigation();
         initializeSmoothScroll();
+        initializeImageLightbox();
     }
 
     function initializeRevealAnimations() {
@@ -226,11 +228,11 @@
 
             navigation.classList.toggle("menu-open", nextState);
             toggleButton.setAttribute("aria-expanded", String(nextState));
-            toggleButton.setAttribute("aria-label", nextState ? "Chiudi menu" : "Apri menu");
+            toggleButton.setAttribute("aria-label", nextState ? "Close menu" : "Open menu");
 
             const label = toggleButton.querySelector(SELECTORS.mobileNavLabel);
             if (label) {
-                label.textContent = nextState ? "chiudi" : "menu";
+                label.textContent = nextState ? "close" : "menu";
             }
         });
 
@@ -258,7 +260,7 @@
         button.type = "button";
         button.className = "mobile-nav-toggle";
         button.setAttribute("aria-expanded", "false");
-        button.setAttribute("aria-label", "Apri menu");
+        button.setAttribute("aria-label", "Open menu");
 
         const label = document.createElement("span");
         label.className = "mobile-nav-toggle__label";
@@ -272,7 +274,7 @@
     function closeMobileNavigation(navigation, toggleButton) {
         navigation.classList.remove("menu-open");
         toggleButton.setAttribute("aria-expanded", "false");
-        toggleButton.setAttribute("aria-label", "Apri menu");
+        toggleButton.setAttribute("aria-label", "Open menu");
 
         const label = toggleButton.querySelector(SELECTORS.mobileNavLabel);
         if (label) {
@@ -301,6 +303,93 @@
                 });
             });
         });
+    }
+
+    function initializeImageLightbox() {
+        const triggers = Array.from(document.querySelectorAll(SELECTORS.lightboxTriggers));
+        if (!triggers.length) {
+            return;
+        }
+
+        const lightbox = createImageLightbox();
+        const image = lightbox.querySelector(".image-lightbox__image");
+        const closeButton = lightbox.querySelector(".image-lightbox__close");
+        let lastFocusedElement = null;
+
+        const closeLightbox = () => {
+            lightbox.classList.remove("is-open");
+            document.body.classList.remove("lightbox-open");
+            window.setTimeout(() => {
+                lightbox.hidden = true;
+                image.removeAttribute("src");
+                image.removeAttribute("alt");
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
+            }, prefersReducedMotion() ? 0 : 220);
+        };
+
+        const openLightbox = (trigger) => {
+            const preview = trigger.querySelector("img");
+            if (!preview) {
+                return;
+            }
+
+            lastFocusedElement = trigger;
+            image.src = preview.currentSrc || preview.src;
+            image.alt = preview.alt;
+            lightbox.hidden = false;
+            document.body.classList.add("lightbox-open");
+            window.requestAnimationFrame(() => {
+                lightbox.classList.add("is-open");
+                closeButton.focus();
+            });
+        };
+
+        triggers.forEach((trigger) => {
+            trigger.addEventListener("click", () => openLightbox(trigger));
+        });
+
+        closeButton.addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !lightbox.hidden) {
+                closeLightbox();
+            }
+        });
+    }
+
+    function createImageLightbox() {
+        const lightbox = document.createElement("div");
+        lightbox.className = "image-lightbox";
+        lightbox.hidden = true;
+        lightbox.setAttribute("role", "dialog");
+        lightbox.setAttribute("aria-modal", "true");
+        lightbox.setAttribute("aria-label", "Image preview");
+
+        const closeButton = document.createElement("button");
+        closeButton.type = "button";
+        closeButton.className = "image-lightbox__close";
+        closeButton.setAttribute("aria-label", "Close image");
+        closeButton.textContent = "X";
+
+        const imageFrame = document.createElement("div");
+        imageFrame.className = "image-lightbox__frame";
+
+        const image = document.createElement("img");
+        image.className = "image-lightbox__image";
+        image.decoding = "async";
+
+        imageFrame.appendChild(image);
+        lightbox.append(closeButton, imageFrame);
+        document.body.appendChild(lightbox);
+
+        return lightbox;
     }
 
     function prefersReducedMotion() {
