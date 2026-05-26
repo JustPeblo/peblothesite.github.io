@@ -30,121 +30,127 @@
         </header>
 
         <main class="main-content exam-page" id="main-content">
-            <section class="hero-section">
-                <div class="hero-content">
+            <section class="exam-hero" aria-labelledby="exam-title">
+                <div class="exam-hero__copy">
                     <p class="exam-kicker fade-in">Percorso personale</p>
-                    <h1 class="title-primary fade-in delay-1">Formazione scuola lavoro</h1>
-                    <h2 class="title-secondary fade-in delay-2">Le mie esperienze principali di PCTO</h2>
+                    <h1 class="title-primary fade-in delay-1" id="exam-title">Formazione scuola lavoro</h1>
+                    <p class="exam-hero__lead fade-in delay-2">
+                        Un percorso tra elettronica, sviluppo web e progetti reali: dal lavoro sui trasmettitori radio alla creazione di interfacce e applicazioni dinamiche.
+                    </p>
                 </div>
             </section>
 
-            <section class="content-section">
-                <article class="content-box">
-                    <div class="exam-intro fade-in delay-3">
-                        <p class="description">
-                            In questa pagina raccolgo le esperienze pi&ugrave; importanti svolte durante il percorso scolastico, concentrandomi sui progetti PCTO del terzo e quarto anno.
-                        </p>
-                    </div>
+            <section class="exam-section" aria-labelledby="exam-path-title">
+                <div class="exam-section__heading fade-in">
+                    <p class="exam-kicker">Esperienze principali</p>
+                    <h2 class="subtitle" id="exam-path-title">Dal laboratorio al frontend</h2>
+                </div>
 
-                    <div class="exam-timeline" aria-label="Timeline delle esperienze">
-                        <section class="exam-year fade-in delay-3">
-                            <div class="exam-year__number">3</div>
-                            <div class="exam-year__content">
-                                <div class="exam-year__heading">
-                                    <h2 class="subtitle">Terzo anno - Electrolink</h2>
-                                    <span class="exam-year__label">Hardware e software</span>
-                                </div>
-                                <div class="exam-year__layout">
-                                    <div>
-                                        <p class="description">
-                                            During my FSL experience at Electrolink, I worked on both hardware and software activities related to radio transmitters and DAB systems. I participated in debugging radiofrequency transmitters, assembling coaxial cables, soldering electronic boards and testing DAB transmitters.
-                                        </p>
-                                        <p class="description">
-                                            On the software side, I contributed to the development of transmitter web interfaces using HTML, JavaScript and web logic. I also worked on graphical interface design for transmitter manuals and on the programming of a 5kW transmitter website.
-                                        </p>
-                                        <p class="description">
-                                            This experience allowed me to improve my technical skills in electronics, web programming, debugging and teamwork, while also learning the theoretical functioning of DAB transmission systems.
-                                        </p>
-                                    </div>
-                                    <div class="exam-photo-grid" aria-label="Foto esperienza Electrolink">
-                                        <button class="exam-photo-button" type="button">
-                                            <img src="images/Electrolink%20(1).jpeg" alt="Attivit&agrave; PCTO presso Electrolink" class="exam-photo" loading="lazy">
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="exam-photo-grid exam-photo-grid--square" aria-label="Galleria Electrolink">
-                                    <button class="exam-photo-button" type="button">
-                                        <img src="images/Electrolink%20(2).jpeg" alt="Foto 2 esperienza Electrolink" class="exam-photo exam-photo--square" loading="lazy">
-                                    </button>
-                                    <button class="exam-photo-button" type="button">
-                                        <img src="images/Electrolink%20(3).jpeg" alt="Foto 3 esperienza Electrolink" class="exam-photo exam-photo--square" loading="lazy">
-                                    </button>
-                                    <button class="exam-photo-button" type="button">
-                                        <img src="images/Electrolink%20(4).jpeg" alt="Foto 4 esperienza Electrolink" class="exam-photo exam-photo--square" loading="lazy">
-                                    </button>
-                                </div>
+                <div class="exam-journey">
+                    <article class="exam-card exam-card--featured fade-in delay-1">
+                        <div class="exam-card__media">
+                            <button class="exam-photo-button" type="button">
+                                <img src="images/electrolink-1.jpeg" alt="Attivit&agrave; PCTO presso Electrolink" class="exam-card__image" loading="lazy">
+                            </button>
+                        </div>
+                        <div class="exam-card__body">
+                            <div class="exam-card__topline">
+                                <span class="exam-year-badge">3 anno</span>
+                                <span class="exam-year__label">Electrolink</span>
                             </div>
-                        </section>
-
-                        <section class="exam-year fade-in delay-4">
-                            <div class="exam-year__number">4</div>
-                            <div class="exam-year__content">
-                                <div class="exam-year__heading">
-                                    <h2 class="subtitle">Quarto anno - B4Next</h2>
-                                    <span class="exam-year__label">Web development</span>
-                                </div>
-                                <div class="exam-year__layout">
-                                    <div>
-                                        <p class="description">
-                                            During my FSL experience at B4Next, I worked on web development projects using HTML, CSS and JavaScript with Visual Studio Code. I first recreated a Serie A website and implemented SportsDB APIs through the JavaScript <code>fetch()</code> function to display dynamic online data.
-                                        </p>
-                                        <p class="description">
-                                            Later, I focused on Spotify APIs, studying token authentication and API requests. I developed a music-themed website capable of searching songs, albums and playlists using Spotify APIs.
-                                        </p>
-                                        <p class="description">
-                                            This experience improved my frontend development skills and my knowledge of JavaScript logic, API integration and dynamic web applications.
-                                        </p>
-                                    </div>
-                                    <div class="exam-photo-grid" aria-label="Foto esperienza B4Next">
-                                        <button class="exam-photo-button" type="button">
-                                            <img src="images/b4next1.jpeg" alt="Progetto web durante il PCTO presso B4Next" class="exam-photo" loading="lazy">
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="exam-photo-grid exam-photo-grid--square" aria-label="Galleria B4Next">
-                                    <button class="exam-photo-button" type="button">
-                                        <img src="images/b4next2.jpeg" alt="Foto 2 esperienza B4Next" class="exam-photo exam-photo--square" loading="lazy">
-                                    </button>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </article>
-            </section>
-
-            <section class="content-section">
-                <article class="content-box">
-                    <div class="exam-grid">
-                        <section class="about-details fade-in delay-1">
-                            <h2 class="subtitle">Competenze acquisite</h2>
-                            <ul class="band-list">
-                                <li>Frontend development con HTML, CSS e JavaScript</li>
-                                <li>Integrazione di API e dati dinamici</li>
-                                <li>Debugging hardware e software</li>
-                                <li>Nozioni su trasmettitori radio e sistemi DAB</li>
-                                <li>Teamwork e organizzazione del lavoro</li>
-                            </ul>
-                        </section>
-
-                        <section class="about-details fade-in delay-2">
-                            <h2 class="subtitle">Riflessione finale</h2>
-                            <p class="description">
-                                Le esperienze presso Electrolink e B4Next mi hanno permesso di collegare elettronica, programmazione web e lavoro su progetti reali. Ho potuto vedere sia il lato tecnico dei sistemi hardware sia quello dello sviluppo frontend, migliorando autonomia, precisione e capacit&agrave; di problem solving.
+                            <h3 class="exam-card__title">Trasmettitori radio, DAB e interfacce web</h3>
+                            <p class="exam-card__text">
+                                During my FSL experience at Electrolink, I worked on hardware and software activities related to radio transmitters and DAB systems. I participated in debugging radiofrequency transmitters, assembling coaxial cables, soldering electronic boards and testing DAB transmitters.
                             </p>
-                        </section>
-                    </div>
-                </article>
+                            <p class="exam-card__text">
+                                On the software side, I contributed to transmitter web interfaces using HTML, JavaScript and interface logic, also working on graphical design for manuals and on a 5kW transmitter website.
+                            </p>
+                            <ul class="exam-tags" aria-label="Competenze Electrolink">
+                                <li>Debugging RF</li>
+                                <li>Saldatura</li>
+                                <li>DAB</li>
+                                <li>HTML</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                        <div class="exam-gallery" aria-label="Galleria Electrolink">
+                            <button class="exam-photo-button" type="button">
+                                <img src="images/electrolink-2.jpeg" alt="Foto 2 esperienza Electrolink" class="exam-gallery__image" loading="lazy">
+                            </button>
+                            <button class="exam-photo-button" type="button">
+                                <img src="images/electrolink-3.jpeg" alt="Foto 3 esperienza Electrolink" class="exam-gallery__image" loading="lazy">
+                            </button>
+                            <button class="exam-photo-button" type="button">
+                                <img src="images/electrolink-4.jpeg" alt="Foto 4 esperienza Electrolink" class="exam-gallery__image" loading="lazy">
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="exam-card fade-in delay-2">
+                        <div class="exam-card__media">
+                            <button class="exam-photo-button" type="button">
+                                <img src="images/b4next1.jpeg" alt="Progetto web durante il PCTO presso B4Next" class="exam-card__image" loading="lazy">
+                            </button>
+                        </div>
+                        <div class="exam-card__body">
+                            <div class="exam-card__topline">
+                                <span class="exam-year-badge">4 anno</span>
+                                <span class="exam-year__label">B4Next</span>
+                            </div>
+                            <h3 class="exam-card__title">Siti dinamici, API e ricerca musicale</h3>
+                            <p class="exam-card__text">
+                                During my FSL experience at B4Next, I worked on web development projects using HTML, CSS and JavaScript with Visual Studio Code. I recreated a Serie A website and used SportsDB APIs with <code>fetch()</code> to display dynamic online data.
+                            </p>
+                            <p class="exam-card__text">
+                                Later, I focused on Spotify APIs, studying token authentication and API requests, then developing a music-themed website capable of searching songs, albums and playlists.
+                            </p>
+                            <ul class="exam-tags" aria-label="Competenze B4Next">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>API</li>
+                                <li>Fetch</li>
+                            </ul>
+                        </div>
+                        <div class="exam-gallery" aria-label="Galleria B4Next">
+                            <button class="exam-photo-button" type="button">
+                                <img src="images/b4next2.jpeg" alt="Foto 2 esperienza B4Next" class="exam-gallery__image" loading="lazy">
+                            </button>
+                        </div>
+                    </article>
+                </div>
             </section>
+
+            <section class="exam-section" aria-labelledby="exam-skills-title">
+                <div class="exam-section__heading fade-in">
+                    <p class="exam-kicker">Risultato</p>
+                    <h2 class="subtitle" id="exam-skills-title">Competenze acquisite</h2>
+                </div>
+
+                <div class="exam-skill-board">
+                    <article class="exam-skill fade-in delay-1">
+                        <span class="exam-skill__number">01</span>
+                        <h3 class="exam-skill__title">Frontend</h3>
+                        <p>HTML, CSS, JavaScript e costruzione di interfacce usabili.</p>
+                    </article>
+                    <article class="exam-skill fade-in delay-2">
+                        <span class="exam-skill__number">02</span>
+                        <h3 class="exam-skill__title">Dati dinamici</h3>
+                        <p>Integrazione API, richieste online e gestione dei risultati.</p>
+                    </article>
+                    <article class="exam-skill fade-in delay-3">
+                        <span class="exam-skill__number">03</span>
+                        <h3 class="exam-skill__title">Elettronica</h3>
+                        <p>Debugging, test, trasmettitori radio e basi dei sistemi DAB.</p>
+                    </article>
+                    <article class="exam-skill fade-in delay-4">
+                        <span class="exam-skill__number">04</span>
+                        <h3 class="exam-skill__title">Metodo</h3>
+                        <p>Precisione, autonomia, lavoro in team e problem solving.</p>
+                    </article>
+                </div>
+            </section>
+
         </main>
 
         <footer class="footer">
